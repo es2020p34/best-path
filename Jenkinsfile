@@ -11,12 +11,12 @@ pipeline {
           }
         }
         stage('unit testing') {
-          agent { docker 'maven:3-alpine' }
           steps {
             sh 'mvn test'
           }
         }
       }
+    }
       stage('register image') {
         agent any
         when { branch 'master' }
@@ -28,6 +28,5 @@ pipeline {
           '''
         }
       }
-    }
   }
 }
