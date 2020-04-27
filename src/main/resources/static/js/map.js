@@ -8,25 +8,30 @@ var map = new mapboxgl.Map({
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
 // Add traffic layer to the map
-map.on('load', updateRoute);
+var traffic = 'low';
+var coords = [[-8.6489,41.1612],[-8.6336,41.1586],[-8.6272,41.1553],[-8.6236,41.1480],[-8.6109,41.1476]];
+map.on('load', function(){
+    updateRoute(coords, traffic, 0);
+    traffic = 'high';
+    coords = [[-8.6076,41.1426],[-8.6122,41.1442],[-8.6145,41.1412],[-8.6346,41.1478],[-8.6701,41.1486],[-8.6893,41.1675]];
+    updateRoute(coords, traffic, 1);
+});
 
 // Use the coordinates to make the Map Matching API request
-function updateRoute() {
+function updateRoute(coords, traffic, i) {
     // Set the profile
     var profile = "driving";
-    // Get the coordinates
-    var coords = [[-8.6489,41.1612],[-8.6336,41.1586],[-8.6272,41.1553],[-8.6236,41.1480],[-8.6109,41.1476]];
     var newCoords = coords.join(';')
     // Set the radius for each coordinate pair to 25 meters
     var radius = [];
     coords.forEach(element => {
         radius.push(25);
     });
-    getMatch(newCoords, radius, profile);
+    getMatch(newCoords, radius, profile, traffic, i);
 }
 
 // Make a Map Matching request
-function getMatch(coordinates, radius, profile) {
+function getMatch(coordinates, radius, profile, traffic, i) {
     // Separate the radiuses with semicolons
     var radiuses = radius.join(';')
     // Create the query
@@ -39,14 +44,22 @@ function getMatch(coordinates, radius, profile) {
         // Get the coordinates from the response
         var coords = data.matchings[0].geometry;
         // Draw the route on the map
-        addRoute(coords);
+        addRoute(coords, traffic, i);
     });
 }
 
 // Draw the Map Matching route as a new layer on the map
-function addRoute(coords) {
+function addRoute(coords, traffic, i) {
+    var colour = "#03AA46";
+    if(traffic == 'low') {
+        colour = "#03AA46"
+    }else if(traffic == 'moderate') {
+        colour = "#FFA500";
+    }else if(traffic == 'high') {
+        colour = "#FF0000";
+    }
     map.addLayer({
-        "id": "route",
+        "id": "r"+i,
         "type": "line",
         "source": {
             "type": "geojson",
@@ -61,7 +74,7 @@ function addRoute(coords) {
             "line-cap": "round"
         },
         "paint": {
-            "line-color": "#03AA46",
+            "line-color": colour,
             "line-width": 8,
             "line-opacity": 0.8
         }
