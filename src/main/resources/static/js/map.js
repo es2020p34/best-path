@@ -75,7 +75,7 @@ function addRoute(coords, traffic, i) {
         },
         "paint": {
             "line-color": colour,
-            "line-width": 8,
+            "line-width": 6,
             "line-opacity": 0.8
         }
     });
