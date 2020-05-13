@@ -4,8 +4,12 @@ import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+// import pt.ua.deti.es.p34.Location;
 
 public class TestsImplementation2 {
+
+    // private Location location;
+
     @Given("^several buses on Porto$")
     public void several_buses_on_Porto() throws Exception {
         // Write code here that turns the phrase above into concrete actions
@@ -24,17 +28,18 @@ public class TestsImplementation2 {
         throw new PendingException();
     }
 
-    @Given("^a road$")
-    public void a_road() throws Exception {
+    @Given("^Mousinha da Silveira street$")
+    public void Mousinho_da_Silveira_street() throws Exception {
+        //location = new Location("Rua Mousinho da Silveira");
+        throw new PendingException();
+    }
+
+    @When("^we know if that street is congestion or not$")
+    public void we_know_if_that_street_is_congestion_or_not() throws Exception {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
 
-    @When("^we know if that road is congestion or not$")
-    public void we_know_if_that_road_is_congestion_or_not() throws Exception {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
-    }
 
     @Then("^we compare the values of limits and the median velocity$")
     public void we_compare_the_values_of_limits_and_the_median_velocity() throws Exception {

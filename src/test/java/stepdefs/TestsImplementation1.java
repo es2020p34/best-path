@@ -1,27 +1,36 @@
 package stepdefs;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class TestsImplementation1 {
+
+    private WebDriver driver = null;
+
     @Given("^I want to know more information about road congestion$")
-    public void i_want_to_know_more_information_about_road_congestion() throws Exception {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void i_want_to_know_more_information_about_road_congestion() {
+        driver = new FirefoxDriver();
     }
 
     @When("^I see the statistics page on BestPath system$")
-    public void i_see_the_statistics_page_on_BestPath_system() throws Exception {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void i_see_the_statistics_page_on_BestPath_system() {
+        driver.navigate().to("http://localhost:8080/statistics");
     }
 
     @Then("^I obtain detailed information about general road congestion$")
-    public void i_obtain_detailed_information_about_general_road_congestion() throws Exception {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void i_obtain_detailed_information_about_general_road_congestion() {
+        if(driver.findElement(By.id("container")).isEnabled()) {
+            System.out.println("Test 1_1 Pass");
+        } else {
+            System.out.println("Test 1_1 Fail");
+        }
+        driver.close();
     }
 
     @Given("^a person with interesting to study the road congestion$")

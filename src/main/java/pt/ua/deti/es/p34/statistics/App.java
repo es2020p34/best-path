@@ -1,4 +1,4 @@
-package pt.ua.deti.es.p34;
+package pt.ua.deti.es.p34.statistics;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;

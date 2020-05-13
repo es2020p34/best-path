@@ -7,6 +7,6 @@ Feature: All of the system need a data source
     Then use the velocity of these buses to know if the traffic is slow, fast or normal.
 
   Scenario: Consuming data about maximum velocity to a given road
-    Given a road
-    When we know if that road is congestion or not
+    Given Mousinha da Silveira street 
+    When we know if that street is congestion or not
     Then we compare the values of limits and the median velocity

@@ -1,4 +1,4 @@
-package pt.ua.deti.es.p34;
+package pt.ua.deti.es.p34.statistics;
 
 import java.util.ArrayList;
 
