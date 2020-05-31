@@ -1,0 +1,19 @@
+spring:
+  cloud:
+    stream:
+      default-binder: es-kafka
+      bindings:
+        inbound:
+          binder: es-kafka
+          destination: esp34event
+          contentType: application/json
+      binders:
+        es-kafka:
+          type: kafka
+          environment:
+            spring:
+              cloud:
+                stream:
+                  kafka:
+                    binder:
+                      brokers: 192.168.160.103:9092

@@ -1,8 +1,8 @@
-package stepdefs;
+package pt.ua.deti.es.p34.stepdefs;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -14,7 +14,7 @@ public class TestsImplementation3 {
 
     @Given("^the necessity to find the best path to the destination$")
     public void the_necessity_to_find_the_best_path_to_the_destination()  {
-        driver = new FirefoxDriver();
+        driver = new HtmlUnitDriver();
     }
 
     @When("^I access the web application$")

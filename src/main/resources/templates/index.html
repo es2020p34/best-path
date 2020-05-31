@@ -68,8 +68,21 @@
 
 <!-- ======= Main Section ======= -->
 <main>
-  <div id='map' style='width: 100%; height: 100vh;'></div>
+  <div id='map' style='position: absolute; margin-top: 72px; top: 0; bottom: 0; width: 100%;'></div>
 </main><!-- End #main -->
+
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+<link
+        rel="stylesheet"
+        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
+        type="text/css"
+/>
+<style>
+  .mapboxgl-ctrl-geocoder {
+    min-width: 350px;
+  }
+</style>
+
 
 <!-- Vendor JS Files -->
 <script th:src="@{js/map.js}"></script>

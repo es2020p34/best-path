@@ -1,14 +1,14 @@
-package stepdefs;
+package pt.ua.deti.es.p34.stepdefs;
 
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-// import pt.ua.deti.es.p34.Location;
+import pt.ua.deti.es.p34.statistics.Location;
 
 public class TestsImplementation2 {
 
-    // private Location location;
+    private Location location;
 
     @Given("^several buses on Porto$")
     public void several_buses_on_Porto() throws Exception {
@@ -30,8 +30,7 @@ public class TestsImplementation2 {
 
     @Given("^Mousinha da Silveira street$")
     public void Mousinho_da_Silveira_street() throws Exception {
-        //location = new Location("Rua Mousinho da Silveira");
-        throw new PendingException();
+        location = new Location("Rua Mousinho da Silveira");
     }
 
     @When("^we know if that street is congestion or not$")
@@ -39,7 +38,6 @@ public class TestsImplementation2 {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
-
 
     @Then("^we compare the values of limits and the median velocity$")
     public void we_compare_the_values_of_limits_and_the_median_velocity() throws Exception {

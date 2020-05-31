@@ -1,8 +1,8 @@
-package stepdefs;
+package pt.ua.deti.es.p34.stepdefs;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
@@ -15,7 +15,7 @@ public class TestsImplementation1 {
 
     @Given("^I want to know more information about road congestion$")
     public void i_want_to_know_more_information_about_road_congestion() {
-        driver = new FirefoxDriver();
+        driver = new HtmlUnitDriver();
     }
 
     @When("^I see the statistics page on BestPath system$")
@@ -26,9 +26,9 @@ public class TestsImplementation1 {
     @Then("^I obtain detailed information about general road congestion$")
     public void i_obtain_detailed_information_about_general_road_congestion() {
         if(driver.findElement(By.id("container")).isEnabled()) {
-            System.out.println("Test 1_1 Pass");
+            System.out.println("Test 1 Pass");
         } else {
-            System.out.println("Test 1_1 Fail");
+            System.out.println("Test 1 Fail");
         }
         driver.close();
     }

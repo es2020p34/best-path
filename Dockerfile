@@ -2,8 +2,8 @@ FROM maven:3.6.3-slim
 
 # Install git
 RUN apt-get update
-RUN apt-get install -y git
-     
+RUN apt-get install -y git 
+
 # Clone from code repository
 RUN mkdir /home/bestpath
 RUN cd /home/bestpath && git clone https://github.com/es2020p34/best-path.git

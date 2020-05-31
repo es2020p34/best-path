@@ -99,8 +99,6 @@ public class Http {
       url = baseUrl;
     }
 
-    LOG.info(url);
-
     for (int i = 0; i < retries && !done; i++) {
       try {
         conn = (HttpURLConnection) new URL(url).openConnection();
@@ -122,16 +120,12 @@ public class Http {
 
         conn.connect();
 
-        //System.err.println(conn.getResponseCode());
-
         switch (conn.getResponseCode()) {
           case HttpURLConnection.HTTP_OK:
             ObjectMapper objectMapper = new ObjectMapper();
             InputStream is = inputStream(conn.getInputStream(), conn.getContentEncoding());
             rv = Utils.cast(objectMapper.readValue(is, Map.class));
             done = true;
-            //System.err.println("200 OK");
-            //System.err.println(Utils.stream2string(is));
             break;
           case HttpURLConnection.HTTP_GATEWAY_TIMEOUT:
             break;
@@ -149,7 +143,7 @@ public class Http {
           Thread.sleep(DEFAULT_RETRY_DELAY_MS);
         }
       } catch (IOException | InterruptedException e) {
-        //e.printStackTrace();
+        LOG.error("getJson", e);
         rv = null;
       } finally {
         if (conn != null) {

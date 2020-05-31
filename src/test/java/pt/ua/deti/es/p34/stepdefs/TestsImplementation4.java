@@ -1,4 +1,4 @@
-package stepdefs;
+package pt.ua.deti.es.p34.stepdefs;
 
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;

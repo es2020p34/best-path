@@ -1,38 +1,12 @@
 package pt.ua.deti.es.p34.statistics;
 
-import org.apache.http.Header;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpHeaders;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.ParseException;
-import org.json.simple.parser.JSONParser;
-
-import java.io.BufferedReader;
-import java.io.Console;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 /**
  * Hello world!
  *
  */
 public class App 
 {
-    
-    public static void main( String[] args ) throws Exception
+    /*public static void main( String[] args ) throws Exception
     {
         String csvFile = "./test.csv";
         String line = "";
@@ -108,5 +82,5 @@ public class App
             }
         }
         return result;
-    }
+    }*/
 }
