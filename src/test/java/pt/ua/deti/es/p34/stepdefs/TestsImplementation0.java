@@ -6,44 +6,52 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import pt.ua.deti.es.p34.utils.Backend;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
+import pt.ua.deti.es.p34.utils.Backend;
+import pt.ua.deti.es.p34.utils.Http;
+
+import java.util.HashMap;
 import java.util.Map;
 
 public class TestsImplementation0 {
-
-    private Backend backend;
-    double lon0, lat0, lon1, lat1;
-
     @Given("^I am at Mercado do Bolhão$")
     public void i_am_at_Mercado_do_bolhão() throws Exception {
-        Map<String, Object> location0 = backend.geocode("mercado do bolhão");
-        JSONObject loc0 = new JSONObject(location0);
-        JSONObject feat0 = loc0.getJSONArray("features").getJSONObject(0);
-        lon0 = (Double) feat0.getJSONObject("geometry").getJSONArray("coordinates").get(0);
-        lat0 = (Double) feat0.getJSONObject("geometry").getJSONArray("coordinates").get(1);
 
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("text", "mercado do bolhão");
+        Map<String, Object> location = Http.getJson("http://localhost:8080/api/geocode", parameters);
+
+        JSONObject loc0 = new JSONObject(location);
+        JSONObject feat0 = loc0.getJSONArray("features").getJSONObject(0);
+        double lon = (Double) feat0.getJSONObject("geometry").getJSONArray("coordinates").get(0),
+        lat = (Double) feat0.getJSONObject("geometry").getJSONArray("coordinates").get(1);
     }
 
     @When("^I search for the fastest path to Foz do Douro$")
     public void i_search_for_the_fastest_path_to_Foz_do_Douro() throws Exception {
-        Map<String, Object> location1 = backend.geocode("foz do douro");
-        JSONObject loc1 = new JSONObject(location1);
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("text", "foz do douro");
+        Map<String, Object> location = Http.getJson("http://localhost:8080/api/geocode", parameters);
+        
+        JSONObject loc1 = new JSONObject(location);
         JSONObject feat1 = loc1.getJSONArray("features").getJSONObject(0);
-        lon1 = (Double) feat1.getJSONObject("geometry").getJSONArray("coordinates").get(0);
-        lat1 = (Double) feat1.getJSONObject("geometry").getJSONArray("coordinates").get(1);
+        double lon = (Double) feat1.getJSONObject("geometry").getJSONArray("coordinates").get(0),
+        lat = (Double) feat1.getJSONObject("geometry").getJSONArray("coordinates").get(1);
     }
 
     @Then("^I find the road with less congestion$")
     public void i_find_the_road_with_less_congestion() throws Exception {
-        Map<String, Object> path = backend.directions(lat0, lon0, lat1, lon1);
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("lat0", "40.635013");
+        parameters.put("lon0", "-8.651136");
+        parameters.put("lat1", "40.643384");
+        parameters.put("lon1", "-8.6427427");
+        Map<String, Object> path = Http.getJson("http://localhost:8080/api/directions", parameters);
+        
         JSONObject fastpath = new JSONObject(path);
         JSONArray array = fastpath.getJSONArray("features");
-        if (array.length() != 0) {
-            System.out.println("Test 0 Pass");
-        } else {
-            System.out.println("Test 0 Fail");
-        }
     }
 
     @Given("^I need instant information about road congestion$")

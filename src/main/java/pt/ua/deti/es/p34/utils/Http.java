@@ -26,8 +26,8 @@ public class Http {
 
   private static final Logger LOG = LoggerFactory.getLogger(Http.class);
 
-  private static final int DEFAULT_CONNECT_TIMEOUT_MS = 60000, 
-  DEFAULT_READ_TIMEOUT_MS = 60000, DEFAULT_MAX_RETRIES = 3, DEFAULT_RETRY_DELAY_MS = 1000;
+  private static final int DEFAULT_CONNECT_TIMEOUT_MS = 60000, DEFAULT_READ_TIMEOUT_MS = 60000, DEFAULT_MAX_RETRIES = 3,
+      DEFAULT_RETRY_DELAY_MS = 1000;
 
   /**
    * Utility class, lets make the constructor private.
@@ -77,6 +77,14 @@ public class Http {
   /**
    * 
    */
+  public static Map<String, Object> getJson(final String baseUrl, final Map<String, String> params)
+      throws UnsupportedEncodingException {
+    return getJson(baseUrl, null, params);
+  }
+
+  /**
+   * 
+   */
   public static Map<String, Object> getJson(final String baseUrl, final Map<String, String> props,
       final Map<String, String> params) throws UnsupportedEncodingException {
     return getJson(baseUrl, props, params, DEFAULT_CONNECT_TIMEOUT_MS, DEFAULT_READ_TIMEOUT_MS, DEFAULT_MAX_RETRIES);
@@ -99,6 +107,8 @@ public class Http {
       url = baseUrl;
     }
 
+    LOG.info("url {}", url);
+
     for (int i = 0; i < retries && !done; i++) {
       try {
         conn = (HttpURLConnection) new URL(url).openConnection();
@@ -119,6 +129,8 @@ public class Http {
         conn.setRequestProperty("Accept-Encoding", "gzip, deflate, identity");
 
         conn.connect();
+
+        LOG.info("getResponseCode {}", conn.getResponseCode());
 
         switch (conn.getResponseCode()) {
           case HttpURLConnection.HTTP_OK:
