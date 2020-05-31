@@ -11,9 +11,16 @@ pipeline {
               sh 'mvn clean compile'
             }
           }
-          stage('testing') {
+          stage('test') {
             steps {
               sh 'mvn test'
+            }
+          }
+          stage ('report') {
+            steps {
+              cucumber buildStatus: 'SUCCESS',
+              fileIncludePattern: '**/*cucumber-report.json',
+              jsonReportDirectory: 'target'
             }
           }
         }
