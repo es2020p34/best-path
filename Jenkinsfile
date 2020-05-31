@@ -35,7 +35,7 @@ pipeline {
         agent any
         when { branch 'master' }
         steps{
-          sshagent(credentials: ['esp34']) {
+          sshagent(credentials: ['esp34-ssh-deploy']) {
             sh '''
               ssh -o StrictHostKeyChecking=no -l esp34 192.168.160.103 "
               docker pull 192.168.160.99:5000/esp34-bestpath:${BUILD_NUMBER}
