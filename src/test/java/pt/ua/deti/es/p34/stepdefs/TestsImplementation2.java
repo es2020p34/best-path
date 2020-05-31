@@ -8,7 +8,7 @@ import pt.ua.deti.es.p34.statistics.Location;
 
 public class TestsImplementation2 {
 
-    private Location location;
+    //private Location location;
 
     @Given("^several buses on Porto$")
     public void several_buses_on_Porto() throws Exception {
@@ -30,7 +30,8 @@ public class TestsImplementation2 {
 
     @Given("^Mousinha da Silveira street$")
     public void Mousinho_da_Silveira_street() throws Exception {
-        location = new Location("Rua Mousinho da Silveira");
+        //location = new Location("Rua Mousinho da Silveira");
+        throw new PendingException();
     }
 
     @When("^we know if that street is congestion or not$")

@@ -19,7 +19,7 @@ public class TestsImplementation3 {
 
     @When("^I access the web application$")
     public void i_access_the_web_application() {
-        driver.navigate().to("http://localhost:8080/");
+        driver.get("http://localhost:8080/");
     }
 
     @Then("^I can visualize the information$")

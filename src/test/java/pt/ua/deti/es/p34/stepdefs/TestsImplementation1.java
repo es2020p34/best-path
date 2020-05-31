@@ -20,7 +20,7 @@ public class TestsImplementation1 {
 
     @When("^I see the statistics page on BestPath system$")
     public void i_see_the_statistics_page_on_BestPath_system() {
-        driver.navigate().to("http://localhost:8080/statistics");
+        driver.get("http://localhost:8080/statistics");
     }
 
     @Then("^I obtain detailed information about general road congestion$")

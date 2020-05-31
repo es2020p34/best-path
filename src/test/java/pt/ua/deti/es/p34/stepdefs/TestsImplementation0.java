@@ -6,10 +6,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-
-import pt.ua.deti.es.p34.utils.Backend;
 import pt.ua.deti.es.p34.utils.Http;
 
 import java.util.HashMap;
