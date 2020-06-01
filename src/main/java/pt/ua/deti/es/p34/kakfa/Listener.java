@@ -22,7 +22,7 @@ public class Listener {
 
     @StreamListener(target = "esp34event")
     public void processMessage(GeoDB.Event event){
-        LOG.debug("New event", event);
+        LOG.debug("Event {}", event);
         this.geodb.insert_event(event);
         this.template.convertAndSend("/topic/event", event);
     }
