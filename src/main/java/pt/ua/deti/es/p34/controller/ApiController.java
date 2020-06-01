@@ -29,12 +29,6 @@ public class ApiController {
         this.geoDB = geoDB;
     }
 
-    @GetMapping("/pathdesign")
-    public Map<String, Object> pathdesign(@RequestParam(name = "coords") String coords,
-                                          @RequestParam(name = "radius") String radius) {
-        return backend.pathdesign(coords, radius);
-    }
-
     @GetMapping("/directions")
     public Map<String, Object> directions(@RequestParam(name = "lat0") double lat0,
             @RequestParam(name = "lon0") double lon0, @RequestParam(name = "lat1") double lat1,

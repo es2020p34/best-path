@@ -22,34 +22,12 @@ public class Backend {
     static final String geocodeUrl = "https://api.openrouteservice.org/geocode/search";
     static final String reverseUrl = "https://api.openrouteservice.org/geocode/reverse";
     static final String speedLimitUrl = "http://overpass-api.de/api/interpreter";
-    static final String pathDesignUrl = "https://api.mapbox.com/matching/v5/mapbox/driving/";
 
     private final String api_key;
-    private final String mapbox_api_key;
 
     @Autowired
-    public Backend(@Value("${api.key}") String api_key, @Value("${mapbox.api.key}") String mapbox_api_key) {
+    public Backend(@Value("${api.key}") String api_key) {
         this.api_key = api_key;
-        this.mapbox_api_key = mapbox_api_key;
-    }
-
-    @Cacheable("pathdesign")
-    public Map<String, Object> pathdesign(String coords, String radius) {
-        Map<String, String> params = new HashMap<>();
-        params.put("access_token", mapbox_api_key);
-        params.put("radiuses", radius);
-        params.put("geometries", "geojson");
-        params.put("steps", "true");
-
-        Map<String, Object> reply = null;
-
-        try {
-            reply = Http.getJson(pathDesignUrl + coords, null, params);
-        } catch (UnsupportedEncodingException e) {
-            LOG.error("pathdesign", e);
-        }
-
-        return reply;
     }
 
     @Cacheable("directions")
@@ -109,7 +87,7 @@ public class Backend {
 
     @Cacheable("speedlimit")
     public Map<String, Object> speedlimit(double lat, double lon) {
-        double speed_limit = 0;
+        double speed_limit = 50;
 
         Map<String, String> params = new HashMap<>();
         params.put("data", "[out:json];way(around:1000," + lat + "," + lon + ")[\"maxspeed\"];out;");
@@ -122,10 +100,7 @@ public class Backend {
                 Map<String, Object> element = Utils.cast(elements.get(0));
                 Map<String, Object> tags = Utils.cast(element.get("tags"));
                 speed_limit = Double.parseDouble((String) tags.get("maxspeed"));
-            } else {
-                speed_limit = 0;
             }
-
         } catch (UnsupportedEncodingException e) {
             LOG.error("speedlimit", e);
         }

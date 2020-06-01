@@ -24,7 +24,6 @@
         </resources>
     </cache-template>
 
-    <cache alias="pathdesign" uses-template="bestPath"/>
     <cache alias="directions" uses-template="bestPath"/>
     <cache alias="geocode" uses-template="bestPath"/>
     <cache alias="reverse" uses-template="bestPath"/>

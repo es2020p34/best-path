@@ -84,7 +84,7 @@ function addTraffic(coords) {
 
     for (let y=0; y<final.length; y++){
         var avg = 0;
-        var lmt = 0;
+        var lmt = 50;
         var url = 'api/avgspeed?lat='+final[y][0][1]+'&lon='+final[y][0][0];
         fetch(url).then(res => res.json()).then((out) => {
             avg  = out["avg_speed"];
@@ -92,20 +92,21 @@ function addTraffic(coords) {
             var url2 = 'api/speedlimit?lat='+final[y][0][1]+'&lon='+final[y][0][0];
             fetch(url2).then(res => res.json()).then((out2) => {
                 lmt  = out2["speed_limit"];
+            }).catch();
 
-                if (avg <= (1/3)*lmt) {
-                    type = "high";
-                } else if (avg <= (2/3)*lmt) {
-                    type = "moderate";
-                } else {
-                    type = "low";
-                }
+            if (avg <= (1/4)*lmt) {
+                type = "high";
+            } else if (avg <= (1/2)*lmt) {
+                type = "moderate";
+            } else {
+                type = "low";
+            }
 
-                var coordsFin = JSON.parse('{"coordinates":'+JSON.stringify(final[y])+',"type":"LineString"}');
+            var coordsFin = JSON.parse('{"coordinates":'+JSON.stringify(final[y])+',"type":"LineString"}');
 
-                addRoute(coordsFin, type, y.toString());
+            addRoute(coordsFin, type, y.toString());
 
-            }).catch(err => { throw err });
+
         }).catch(err => { throw err });
     }
 }

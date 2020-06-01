@@ -26,7 +26,7 @@ public class Http {
 
   private static final Logger LOG = LoggerFactory.getLogger(Http.class);
 
-  private static final int DEFAULT_CONNECT_TIMEOUT_MS = 60000, DEFAULT_READ_TIMEOUT_MS = 60000, DEFAULT_MAX_RETRIES = 3,
+  private static final int DEFAULT_CONNECT_TIMEOUT_MS = 10000, DEFAULT_READ_TIMEOUT_MS = 10000, DEFAULT_MAX_RETRIES = 3,
       DEFAULT_RETRY_DELAY_MS = 1000;
 
   /**
