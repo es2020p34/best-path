@@ -8,5 +8,5 @@ Feature: All of the system need a data source
 
   Scenario: Consuming data about maximum velocity to a given road
     Given Mousinha da Silveira street 
-    When we know if that street is congestion or not
-    Then we compare the values of limits and the median velocity
+    When we compare the values of limits and the median velocity
+    Then we know if that street is congestion or not
